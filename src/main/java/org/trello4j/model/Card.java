@@ -112,7 +112,7 @@ public class Card extends TrelloObject {
 	public class Attachment {
 
 		private String _id;
-		private String bytes;
+		private Long bytes;
 		private Date date;
 		private String url;
 		private String name;
@@ -126,11 +126,11 @@ public class Card extends TrelloObject {
 			this._id = _id;
 		}
 
-		public String getBytes() {
+		public Long getBytes() {
 			return bytes;
 		}
 
-		public void setBytes(String bytes) {
+		public void setBytes(Long bytes) {
 			this.bytes = bytes;
 		}
 

@@ -55,7 +55,7 @@ public class TrelloObjectFactoryImpl {
 	 *            the json content
 	 * @return the json element
 	 */
-	private JsonElement unmarshallToJson(InputStream jsonContent) {
+	JsonElement unmarshallToJson(InputStream jsonContent) {
 		try {
 			JsonElement element = parser.parse(new InputStreamReader(
 					jsonContent,
@@ -87,7 +87,7 @@ public class TrelloObjectFactoryImpl {
 	 * @return the t
 	 */
 	@SuppressWarnings("unchecked")
-	private <T> T unmarshallToObj(TypeToken<T> typeToken, JsonElement response) {
+	<T> T unmarshallToObj(TypeToken<T> typeToken, JsonElement response) {
 		return (T) getGson().fromJson(response, typeToken.getType());
 	}
 

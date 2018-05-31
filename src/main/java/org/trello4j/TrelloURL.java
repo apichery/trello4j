@@ -1,6 +1,9 @@
 package org.trello4j;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The Class TrelloURL.
  */
@@ -81,9 +84,10 @@ public class TrelloURL {
 	private String token = null;
 
 	private String[] filters = null;
+	private Map<String, String> params;
 
 
-    public static TrelloURL create(String apiKey, String url,
+	public static TrelloURL create(String apiKey, String url,
 			String... pathParams) {
 		return new TrelloURL(apiKey, url, pathParams);
 	}
@@ -104,6 +108,18 @@ public class TrelloURL {
 		return this;
 	}
 
+	public TrelloURL params(Map<String, Object> params) {
+		if (params == null || params.isEmpty()) {
+			this.params = null;
+		} else {
+			this.params = new HashMap<>();
+			for (Map.Entry<String, Object> e : params.entrySet()) {
+				this.params.put(e.getKey(), String.valueOf(e.getValue()));
+			}
+		}
+		return this;
+	}
+
 	public String build() {
 		if (apiKey == null || url == null) {
 			throw new NullPointerException(
@@ -114,6 +130,7 @@ public class TrelloURL {
 				.append(createUrlWithPathParams())
 				.append(createAuthQueryString())
 				.append(createFilterQuery())
+				.append(createParamsQuery())
 				.toString();
 	}
 
@@ -127,6 +144,18 @@ public class TrelloURL {
 			filterStr = sb.toString();
 		}
 		return filterStr;
+	}
+
+	private String createParamsQuery() {
+		String paramsStr = "";
+		if (this.params != null) {
+			StringBuilder sb = new StringBuilder();
+			for (Map.Entry<String, String> e : params.entrySet()) {
+				sb.append("&").append(e.getKey()).append("=").append(e.getValue());
+			}
+			paramsStr = sb.toString();
+		}
+		return paramsStr;
 	}
 
 	private String createAuthQueryString() {

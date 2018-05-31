@@ -66,7 +66,7 @@ public class Checklist extends TrelloObject {
 		private String name;
         private String type;
         private double pos;
-
+		private String state;
 
         public String getName() {
 			return name;
@@ -90,6 +90,14 @@ public class Checklist extends TrelloObject {
 
 		public void setPos(double pos) {
 			this.pos = pos;
+		}
+
+		public String getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state = state;
 		}
 	}
 }
