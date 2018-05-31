@@ -1,28 +1,22 @@
 package org.trello4j;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.logging.Level;
 import java.util.zip.GZIPInputStream;
 import javax.net.ssl.HttpsURLConnection;
-import javax.ws.rs.ClientErrorException;
 
 import org.trello4j.model.*;
 import org.trello4j.model.Board.Prefs;
 import org.trello4j.model.Card.Attachment;
 import org.trello4j.model.Checklist.CheckItem;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -1330,8 +1324,8 @@ public class TrelloImpl implements Trello {
 
     private InputStream getWrappedInputStream(InputStream is, boolean gzip)
             throws IOException {
-		/*
-		 * TODO: What about this? ---------------------- "Java clients which use
+        /*
+         * TODO: What about this? ---------------------- "Java clients which use
 		 * java.util.zip.GZIPInputStream() and wrap it with a
 		 * java.io.BufferedReader() to read streaming API data will encounter
 		 * buffering on low volume streams, since GZIPInputStream's available()
